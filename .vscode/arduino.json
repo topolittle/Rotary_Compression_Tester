@@ -1,0 +1,7 @@
+{
+    "sketch": "src/compression_tester/compression_tester.ino",
+    "board": "arduino:avr:nano",
+    "port": "/dev/ttyUSB0",
+    "configuration": "cpu=atmega328old",
+    "output": "output"
+}
