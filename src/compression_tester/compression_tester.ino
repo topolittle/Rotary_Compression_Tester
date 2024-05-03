@@ -17,11 +17,11 @@ Modified, refactored by Stephane Gilbert in 2024 for better acquisition sampling
 #define FIRMWARE_VERSION                "2.0"
 
 // Sensor internal volume. See the 'Fine tuning the dead space coorrection factor' in the README.md
-#define SENSOR_VOLUME_CC                3.0f    // The internal volume of the sensor itself, in cubic centimeters
+#define SENSOR_VOLUME_CC                3.5     // The internal volume of the sensor itself, in cubic centimeters
 
 // Engine specifications
 #define COMPRESSION_RATIO               10      // The Renesis has a compression ration of 10:1
-#define ROTOR_SINGLE_FACE_MAX_VOLUME_CC 654.0f  // The Renesis has a total of 1308cc for two rotors, this means 654cc per rotor
+#define ROTOR_SINGLE_FACE_MAX_VOLUME_CC 654     // The Renesis has a total of 1308cc for two rotors, this means 654cc per rotor
 #define NUMBER_OF_CHAMBERS              3       // The Renesis has 3 chamber per rotors
 
 // Gather 10 complete rotation of the rotor and keeps the last 3
@@ -35,9 +35,9 @@ Modified, refactored by Stephane Gilbert in 2024 for better acquisition sampling
 #define MAX_THRESHOLD                   15
 #define MIN_THRESHOLD                   MAX_THRESHOLD
 
-#define SCALE_250_RPM_A0 8.5944582043344f     // polynom Fit a0 to norm values to 250rpm
-#define SCALE_250_RPM_A1 -0.04802870227f      // polynom Fit a1 to norm values to 250rpm
-#define SCALE_250_RPM_A2 0.00005425051599f    // polynom Fit a2 to norm values to 250rpm
+#define SCALE_250_RPM_A0                8.5944582043344        // polynom Fit a0 to norm values to 250rpm
+#define SCALE_250_RPM_A1                -0.04802870227         // polynom Fit a1 to norm values to 250rpm
+#define SCALE_250_RPM_A2                0.00005425051599       // polynom Fit a2 to norm values to 250rpm
 
 #define SCREEN_WIDTH 128    // OLED display width, in pixels
 #define SCREEN_HEIGHT 64    // OLED display height, in pixels
@@ -130,7 +130,7 @@ float mapRawToAbsolutePressure(int rawValue) {
 // @param rpm: The RPM at which the pressure reading was taken
 // @return: The normalized pressure, in PSI, normalized to 250 RPM
 float scaleTo250Rpm(float pressure, int rpm) {
-    return pressure + (SCALE_250_RPM_A0 + (SCALE_250_RPM_A1 * rpm) + (SCALE_250_RPM_A2 * sq(rpm)));
+    return pressure + ((float)SCALE_250_RPM_A0 + ((float)SCALE_250_RPM_A1 * rpm) + ((float)SCALE_250_RPM_A2 * sq(rpm)));
 }
 
 // Compute the actual pressure from the raw value from the analog to digital conversion
